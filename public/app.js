@@ -3,10 +3,9 @@ const app = angular.module('MealApp', ['ui.router']);
 
 const controllers = [
     require('./controllers/home'),
+    require('./controllers/cook'),
     require('./controllers/start'),
 ];
-
-// for loop to bring controllers
 
 for (let i = 0; i < controllers.length; i++) {
     app.controller(controllers[i].name, controllers[i].func);
@@ -94,6 +93,18 @@ app.component('eatconfirmPage', {
 });
 
 
+},{"./controllers/cook":2,"./controllers/home":3,"./services/meal":4,"./services/user":5}],2:[function(require,module,exports){
+module.exports = {
+    name: 'CookController',
+    func: function ($scope, $stateParams, MealService) {
+        
+        $scope.add = function(meal){
+            MealService.postMeal();
+            console.log('meal added');
+        }
+    },
+};
+},{}],3:[function(require,module,exports){
 },{"./controllers/home":2,"./controllers/start":3,"./services/meal":4,"./services/user":5}],2:[function(require,module,exports){
 module.exports = {
     name: 'HomeController',
@@ -101,7 +112,7 @@ module.exports = {
         console.log('it worked');
     },
 }
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 module.exports = {
 
     name: 'StartController',
@@ -134,20 +145,23 @@ module.exports = {
                         // is_complete: false, // 'false' = incomplete 'true' = complete // <= maybe an idea for later
                         
                         // USER INPUTS
-                        name: document.getElementById('name').value,
-                        recipe: document.getElementById('recipe').value,
-                        available: document.getElementById('available'),
+                        name: document.getElementById('meal_name').value,
+                        recipe: document.getElementById('recipe_url').value,
+                        pickup_time: document.getElementById('pickup_time').value,
                         category: document.getElementById('category').value,
-                        add_info: document.getElementById('addInfo').value,
+                        add_info: document.getElementById('add_info').value,
                     }
 
                     availableMeals.push(meal);
                 }
+
+                console.log(availableMeals);
             }
         }
     }
 }
 },{}],5:[function(require,module,exports){
+
 module.exports = {
     name: 'UserService',
     func: function ($http) {
