@@ -4,6 +4,8 @@
 
     <p>Enjoy your {{ confirmedOrder.name }}!</p>
 
-    <button ui-sref="home">Go Home</button>
+    <p>Message to you from your chef, {{ confirmedOrder.user.username }}: {{ confirmedOrder.add_info }}</p>
+
+        <button ui-sref="home">Go Home</button>
 
 </section>
