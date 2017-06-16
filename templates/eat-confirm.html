@@ -4,6 +4,8 @@
 
     <h1>Hope You're Hungry!<br>Enjoy your {{ confirmedOrder.name }}!</h1>
 
-    <button class="home" ui-sref="home">Go Home</button>
+    <p>Message to you from your chef, {{ confirmedOrder.user.username }}: {{ confirmedOrder.add_info }}</p>
+
+        <button class="home" ui-sref="home">Go Home</button>
 
 </section>
